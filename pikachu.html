@@ -1,0 +1,132 @@
+<html>
+    <head>
+        
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="app.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/bootstrap/js/modal.js"></script>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+         <link rel="stylesheet" href="bower_components/bootswatch/cyborg/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/animate.css/animate.css">
+        
+        <style>
+            body{
+                background-image: url("wall.jpg");
+                 }
+            #fabButton{  -webkit-animation-delay: .5s;
+            -webkit-animation-iteration-count: 3;}
+
+            #fab2Button{  -webkit-animation-delay: 1s;
+            -webkit-animation-iteration-count: 1;}
+
+            #fab2Button{  -webkit-animation-delay: .7s;
+            }
+
+            #fab_heading{  -webkit-animation-delay: 1s;-webkit-animation-duration: 5s;
+            }
+            </style>
+    </head>
+
+
+    <body ng-app="pika">
+
+    <div ng-controller="pickachuCtrl as game">
+ 
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">INSTRUCTION ARE :</h4>
+      </div>
+      <div class="modal-body" style=" color: white">
+            PokeMon requires your help. Save them by picking the right ones. There are some good characters and there are the bad ones.<br>
+            1. Pikachu appears at random places.<br>
+            2. At the same time bad guy (giovanni) will also appear.<br>
+            3. Click on<span style="color:green"> PICKACHU means +1.</span><br>
+            4. Consecutive<span style="color :green">  3 correct means +5 bonus.</span><br>
+            5. Click on <span style="color :red"> GIOVANNI (bad guy) mean -3.</span><br>
+            6. Going to <span style="color :red">negative score will mean "Game Over".</span><br>
+            7. A total of 15 points mean Level Complete.<br>
+            8. Every <span style="color :red"> miss means -1 </span>except first three miss just at the start of each level.<br>
+            9. With every increasing level Pikachu and other will appear for lesser time. 
+        
+      </div>
+      <div class="modal-footer">
+       <h3 style ="text-align :center">   ALL THE BEST !!! </h3>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+           <!--HEADONGS LIKE LEVEL,GAMEOVER AND DISPLAY PLAYER SCORE AND LEVEL-->
+           
+            <div class="row">
+
+                <div class="col-xs-4">
+                     <button id="fabButton" class="btn btn-info btn-lg animated  swing"> <b>PLAYER1 : {{game.player1}}</b></button>
+                    <button class="btn btn-success btn-md animated bounce" data-toggle="modal" data-target="#myModal"> <b>INSTRUCTIONS</b> </button>
+                    <button class="btn btn-info btn-md"> <b>LEVEL :{{game.level}} </b> </button><br>
+                </div>
+                <div class="col-xs-8">
+                          <div ng-if="game.over"  style=" height: 10%;padding: 0;margin: 0;">
+                                 <b>
+                                <h1 id="fab_heading" class="animated infinite pulse hinge" style="color:red; text-align:center; text-shadow:7px 7px black ">GAME OVER
+                                </h1>
+                                 </b>
+                            </div>
+
+                            <div ng-if="game.temp"  style=" height: 5%;padding: 0;margin: 0;" >
+                                 
+                                 <h1 id="fab_heading" class="animated rubberBand bounceOutRight" style="color:red; text-align:center;text-shadow: 3px 3px black">LEVEL {{game.level}}
+                                </h1>
+                                
+                            </div>
+                 </div>
+
+            </div>
+          
+           
+            
+        <!--//FOR START BUTTON AND GAME OVER RESET BUTTON -->
+
+
+            <div style=" height: 10%;padding: 0;margin: 0;">
+                <button  ng-hide="game.startCount || game.over" id="fab2Button" class="btn btn-danger  btn-lg animated bounceInLeft" ng-click="game.generation()"> START </button>
+           
+                 <button ng-if="game.over" id="fab3button" class="btn btn-danger btn-lg animated pulse bounceInRight" ng-click="game.startAgain()">RESET </button>
+            </div>
+
+
+        <!--//FOR DISPLAY OF GRIDS-->
+            <div ng-if="!game.over" class="row">
+                
+                
+                        <div  ng-repeat ="row in game.divArray" class="col-xs-12 " >
+                   
+
+                    
+                                <div ng-repeat="col in row" class="col-xs-4" style=" border:1px solid black; height: 170px;" ng-click="game.score(col)">
+                             
+                                <img  ng-if="game.hero == col"style='height: 100% !important; width: 100% ; object-fit: contain !important'  src="pika.png"  >  
+                                <img  ng-if="game.villan ==col" style='height: 100% !important; width: 100% ; object-fit: contain !important'  src="villan.png"  > 
+                 
+                                </div>
+                     </div>
+   
+             </div>
+
+
+        <!--//MODAL CREATION FOR INSTRUCTIONS-->
+            
+          
+ 
+        </div>
+    </body>
+</html>
+        
