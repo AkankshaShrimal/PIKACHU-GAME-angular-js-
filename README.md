@@ -3,6 +3,8 @@
 - Have a demo [here](https://pikachu-game-angular-js.firebaseapp.com/)
 ### SCREENSHOTS :-
 
+The following are the screenshots for the Pikachu Game built:
+
 <P>
     <img src="screenshots/image1.png" alt="game-screenshot-1">
 </P>
