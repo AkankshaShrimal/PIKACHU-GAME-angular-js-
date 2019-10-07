@@ -1,3 +1,5 @@
+// Created by Akanksha Shrimal
+
 angular.module("pika",[])
 .controller("pickachuCtrl",pickachuCtrl)
 
